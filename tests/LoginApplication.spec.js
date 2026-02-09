@@ -2,6 +2,7 @@ import { test, expect } from "@playwright/test";
 
 import { LoginPage } from "../Pages/LoginPage";
 import { AddtoCart } from "../Pages/AddtoCart";
+import { Checkout } from "../Pages/Checkout";
 import { LogOut } from "../Pages/LogOut";
 
 test('test case', async ({ page }) => {
@@ -12,6 +13,7 @@ test('test case', async ({ page }) => {
 
     const userlogin = new LoginPage(page);
     const cartverify = new AddtoCart(page);
+    const checkouterify = new Checkout(page) ;
     const userLogout = new LogOut(page);
 
     await userlogin.gotoLoginApplication();
@@ -26,5 +28,6 @@ test('test case', async ({ page }) => {
         console.log(linkText?.trim());
     }
     await cartverify.addtocart();
+    await checkouterify.checkoutApplication();
     await userLogout.gotologout();
 });
