@@ -1,9 +1,11 @@
 import { test, expect } from "@playwright/test";
 
 import { LoginPage } from "../Pages/LoginPage";
+import {FilterPage} from "../Pages/FilterPage" ;
 import { AddtoCart } from "../Pages/AddtoCart";
 import { Checkout } from "../Pages/Checkout";
-import { LogOut } from "../Pages/LogOut";
+import { LogOut } from "../Pages/LogOut"; 
+
 
 test('test case', async ({ page }) => {
 
@@ -12,6 +14,7 @@ test('test case', async ({ page }) => {
     
 
     const userlogin = new LoginPage(page);
+    const  clicktoflt1= new FilterPage(page) ;
     const cartverify = new AddtoCart(page);
     const checkouterify = new Checkout(page) ;
     const userLogout = new LogOut(page);
@@ -25,8 +28,10 @@ test('test case', async ({ page }) => {
     // print all link
      for (let i = 0; i < totalLinks; i++) {
         const linkText = await links.nth(i).textContent();
-        console.log(linkText?.trim());
+        console.log(linkText?.trim()); 
     }
+
+    await clicktoflt1.clickonflt(); 
     await cartverify.addtocart();
     await checkouterify.checkoutApplication();
     await userLogout.gotologout();
